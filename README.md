@@ -156,3 +156,22 @@ Used by 7 participants
 For learning or developer R&D purpose you may consider using
 - Minikube ( purely meant for learning or R&D purpose, not recommend for production use )
 - Microk8s ( this can also used in production, generally used by IOT based projects )
+
+# Kubernetes CLI commands ( imperative style )
+
+## Listing nodes in Kubernetes/OpenShift cluster
+```
+kubectl get nodes
+oc get nodes
+````
+
+The expected output is
+<pre>
+(jegan@tektutor.org)$ oc get nodes
+NAME                        STATUS     ROLES           AGE    VERSION
+master-1.ocp.tektutor.org   Ready   master,worker   3d3h   v1.23.5+b463d71
+master-2.ocp.tektutor.org   Ready   master,worker   3d3h   v1.23.5+b463d71
+master-3.ocp.tektutor.org   Ready   master,worker   3d3h   v1.23.5+b463d71
+worker-1.ocp.tektutor.org   Ready   worker          3d2h   v1.23.5+b463d71
+worker-2.ocp.tektutor.org   Ready   worker          3d2h   v1.23.5+b463d71
+</pre>
