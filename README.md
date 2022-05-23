@@ -45,8 +45,44 @@
 
 # Container Engines
 - Docker is one of most popular Container Engine
-- 
+- CRI-O
+- containerd
+- LXC
+- Podman is also gaining popularity ( used by RedHat OpenShift )
 
-# What is Container Orchestration?
+# What is Container Orchestration Platform ?
 - helps us in managing containers
+- self healing platform
+- also helps in making the deployed applications Highly Available ( HA )
+- also helps in scaling up/down your application on demand
+- in built monitoring capabilities
+  - automatically monitors the health of your application and heals them when required
+  - load balancing
+- supports different types of services ( internal and external services )
+- helps in application rolling update
+  - upgrading your application from one version to other without any down-time
 
+## What are the various container orchestration platforms available?
+- Docker SWARM
+   - only support Docker container engine
+- Google Kubernetes
+   - supports many different container engines including Docker
+- RedHat OpenShift
+   - supports many different container engines including Docker
+- AWS EKS ( Managed Kubernetes from Amazon - SaaS )
+- Azure AKS ( Managed Kubernetes from Microsoft - SaaS )
+- AWS ROSA ( Managed RedHat OpenShift from Amazon - SaaS  )
+- Azure OpenShift Service ( Managed RedHat OpenShift from Microsoft - SaaS )
+
+# Lab Setup
+Dell Server ( Server 1 )
+RAM - 512 GB RAM
+64 Physical Cores 
+6TB HDD Storage
+Used by 8 participants
+
+Dell Server ( Server 2 )
+RAM - 512 GB RAM
+64 Physical Cores 
+Used by 7 participants
+6TB HDD Storage
