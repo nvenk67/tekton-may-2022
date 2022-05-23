@@ -175,3 +175,41 @@ master-3.ocp.tektutor.org   Ready   master,worker   3d3h   v1.23.5+b463d71
 worker-1.ocp.tektutor.org   Ready   worker          3d2h   v1.23.5+b463d71
 worker-2.ocp.tektutor.org   Ready   worker          3d2h   v1.23.5+b463d71
 </pre>
+
+## Creating a nginx deploy in Kubernetes/OpenShift
+```
+kubectl create nm
+kubectl create deploy nginx --image=bitnami/nginx:latest -n jegan
+```
+
+Listing the deployments
+```
+kubectl get deployments
+kubectl get deployment
+kubectl get deploy
+
+oc get deployments
+oc get deployment
+oc get deploy
+```
+
+Listing the replicasets
+```
+kubectl get replicasets
+kubectl get replicaset
+kubectl get rs
+
+oc get replicasets
+oc get replicaset
+oc get rs
+```
+
+List the pods
+```
+kubectl get pods
+kubectl get pod
+kubectl get po
+oc get pods
+oc get pod
+oc get po
+```
