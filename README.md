@@ -249,10 +249,24 @@ Using project "jegan" on server "https://api.ocp.tektutor.org:6443".
 oc project <any-other-existing-project-name>
 ```
 
-- oc is openshift client tool that interacts with OpenShift cluster by way of REST API calls
-- oc is client tool similar to kubectl in Kubernetes
-- kubectl and oc commands can be interchangingly used within OpenShift
+## Scaling up your nginx deployment
 
-1. oc tool sends a REST API request to API Server asking it to create a deployment by name nginx with the image bitnami/nginx:latest
-2. API Server on the master node receives the request from oc tool and then it creates a deployment nginx in the etc datastore.
-3. Once the 
+List the number of nginx pods running
+```
+oc get po
+```
+
+Now you scale up the Pods to count 3
+```
+oc scale deploy/nginx --replicas=3
+```
+
+List the number of nginx pods running now
+
+You are expected to see 3 replicas of nginx Pods after scale up
+
+You may watch the pods status
+```
+oc get po -o wide -w
+```
+To come out of watch mode, you may hit Ctrl + c
