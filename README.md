@@ -270,3 +270,18 @@ You may watch the pods status
 oc get po -o wide -w
 ```
 To come out of watch mode, you may hit Ctrl + c
+
+
+## Kubernetes
+- supports 3 types of services
+  1. ClusterIP Service ( Internal service - ie works only with K8s cluster )
+  2. NodePort Service ( External service -ie accessible even outside the K8s cluster )
+  3. LoadBalancer Service ( External Service - used typically in cloud env like AWS/Azure, etc )
+      - an external Load Balancer will be created which performan load balance to different Pods
+      - on Prem if you need this, you need install MetalLB/Traeffic Load Balancer
+
+## OpenShift
+- built on top of Kubernetes with many additional features
+- whatever works in Kubernetes also works in OpenShift
+- supports a new feature called route that provides a friendly url for your services that can be accessed outside the cluster
+- 
