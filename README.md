@@ -228,6 +228,27 @@ List the deployments, replicasets and pods as shown below
 oc get deploy,rs,po
 ```
 
+## Listing the existing projects in OpenShift
+```
+oc get projects
+```
+
+## Finding the currently active project
+```
+oc project
+```
+The expected output is
+<pre>
+(root@tektutor.org)# oc project
+Using project "jegan" on server "https://api.ocp.tektutor.org:6443".
+</pre>
+
+
+## Switching to a different project
+```
+oc project <any-other-existing-project-name>
+```
+
 - oc is openshift client tool that interacts with OpenShift cluster by way of REST API calls
 - oc is client tool similar to kubectl in Kubernetes
 - kubectl and oc commands can be interchangingly used within OpenShift
