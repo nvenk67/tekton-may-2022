@@ -1,5 +1,6 @@
 # tekton-may-2022
 
+Day - 1 - Kubernetes 
 # Hypervisor ( Virtualization Technology )
 - helps you in running 2 or more Operating Systems side by side on the same machine
 - Intel Processor
@@ -213,3 +214,24 @@ oc get pods
 oc get pod
 oc get po
 ```
+
+# Day 2 - OpenShift
+
+## What are the chain of things that happen with Kubernetes/OpenShift when we deploy an application?
+```
+oc new-project jegan
+oc create deploy nginx --image=bitnami/nginx:latest
+```
+
+List the deployments, replicasets and pods as shown below
+```
+oc get deploy,rs,po
+```
+
+- oc is openshift client tool that interacts with OpenShift cluster by way of REST API calls
+- oc is client tool similar to kubectl in Kubernetes
+- kubectl and oc commands can be interchangingly used within OpenShift
+
+1. oc tool sends a REST API request to API Server asking it to create a deployment by name nginx with the image bitnami/nginx:latest
+2. API Server on the master node receives the request from oc tool and then it creates a deployment nginx in the etc datastore.
+3. Once the 
