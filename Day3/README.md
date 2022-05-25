@@ -35,4 +35,8 @@ and configures the Load Balancer to perform the routing to the corresponding ser
 5. Ingress Rule ( This is defined by Web Developer/DevOps Engineer )
 
 # What is a route?
-- OpenShift feature which isn't present
+- OpenShift feature which isn't present Kubernetes
+- In OpenShift, every service is generally created as clusterip service
+- If service will be accessed externally, then a route will be created for the clusterIP service.
+- If the service is accessed only within the cluster, then no route is created
+- route only forwards the call to a single service
