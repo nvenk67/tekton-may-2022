@@ -170,6 +170,8 @@ For learning or developer R&D purpose you may consider using
 ## Kubernetes/OpenShift Architecture
 ![Openshift Architecture](master-node.png)
 
+![OpenShift Architecture](k8s.png)
+
 # Kubernetes CLI commands ( imperative style )
 
 ## Listing nodes in Kubernetes/OpenShift cluster
