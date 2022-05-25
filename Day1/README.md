@@ -167,6 +167,9 @@ For learning or developer R&D purpose you may consider using
 - Minikube ( purely meant for learning or R&D purpose, not recommend for production use )
 - Microk8s ( this can also used in production, generally used by IOT based projects )
 
+## Kubernetes/OpenShift Architecture
+![Openshift Architecture](master-node.png)
+
 # Kubernetes CLI commands ( imperative style )
 
 ## Listing nodes in Kubernetes/OpenShift cluster
