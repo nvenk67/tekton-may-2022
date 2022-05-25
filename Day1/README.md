@@ -1,7 +1,6 @@
-# tekton-may-2022
+# Day - 1 - Kubernetes 
 
-Day - 1 - Kubernetes 
-# Hypervisor ( Virtualization Technology )
+## Hypervisor ( Virtualization Technology )
 - helps you in running 2 or more Operating Systems side by side on the same machine
 - Intel Processor
   - the virtualization feature is called VT-X
@@ -26,7 +25,7 @@ Day - 1 - Kubernetes
        - dedicated Storage
      - has dedicated OS Kernel
   
-# Container Technology
+## Container Technology
 - an application virtualization technology
 - containers are nothing but application process that runs in a separate namespace
 - containers shares the hardware resources on the OS where they are running
@@ -41,22 +40,23 @@ Day - 1 - Kubernetes
 - containers just like VMs has their own network stack
 - containers just like VMs has their own shell/command prompt
 - it is for these reasons people tend to compare a container with a VM
-- but containers are mere application process. Container are not OS.
+- but containers are mere application process and containers are not OS
 - while VMs are a fully functional Operating System
+- containers typically has one application per container
 
-# Container Engines
+## Container Engines
 - Docker is one of most popular Container Engine
-- CRI-O
+- CRI-O is a container runtime that is used in RedHat OpenShift
 - containerd
 - LXC
-- Podman is also gaining popularity ( used by RedHat OpenShift )
+- Podman is also gaining popularity
 
-# What is Container Orchestration Platform ?
+## What is Container Orchestration Platform ?
 - helps us in managing containers
 - self healing platform
 - also helps in making the deployed applications Highly Available ( HA )
 - also helps in scaling up/down your application on demand
-- in built monitoring capabilities
+- in built monitoring capabilities backed by controllers
   - automatically monitors the health of your application and heals them when required
   - load balancing
 - supports different types of services ( internal and external services )
@@ -80,13 +80,22 @@ Dell Server ( Server 1 )
 RAM - 512 GB RAM
 64 Physical Cores 
 6TB HDD Storage
+
 Used by 8 participants
+OpenShift Server IP - 192.168.1.121
+Credentials 
+  - user : user1 thru user8
+  - password: Admin@123
 
 Dell Server ( Server 2 )
 RAM - 512 GB RAM
 64 Physical Cores 
 Used by 7 participants
 6TB HDD Storage
+OpenShift Server IP - 192.168.1.122
+Credentials 
+  - user : user1 thru user8
+  - password: Admin@123
 
 ## Kubernetes Jargons
 - Deployment
@@ -113,34 +122,34 @@ Used by 7 participants
 - a group of master and worker nodes
 - you may have any number of master nodes
 - you may have any number of worker nodes
-- node could a Physical server, virtual machine, an ec2 instance from AWS or other cloud
+- node could be a Physical server, or a virtual machine, or an ec2 instance from AWS or other cloud machine
 - Master Node
   - Control Plane Components
     1. API Server ( entire orchestration functionalities are available as REST APIs)
-       - any Kubernetes component is only allowed to talk to API Server
-       - no kubernetes components to talk to each other directory
+       - all Kubernetes components are only allowed to talk to API Server
+       - no kubernetes components can talk to each other directly
        - no kubernetes components are aware of other components in Kubernetes
     3. etcd key/value based datastore/database
-       - API Server is only component that read/write to/from this database
+       - API Server is only component that read/writes to/from this database
        - this database stores the K8s cluster state
        - any insertion/update/deletion triggers a event
        - each controller will act on different events
     5. Scheduler
        - this component is responsible for scheduling user applications onto a healthy
-         node
+         node when new Pods are created as part of deployment creation or scale up, etc.,
     7. Controller Managers ( a collection of Controllers )
-       - monitoring features are supported by various controller in the Control Plane
+       - monitoring features are supported by various controllers in the Control Plane
 - Worker Node
   - atleast one node with worker role is required in a functional K8s/OpenShift cluster
   - user applications are deployed only on nodes with worker role
   - in special cases the master node can have both master role and worker role
 
 # Kubernetes/OpenShift Common components
-- every node will have Container Agent ( kubelet )
-- The Container Agent i.e kubelet is the one which interacts with Container Engine
-- kubelet is responsible in download Container images to local nodes, deploying Pods(containers) on to the node, monitoring the health of the Pod(containers) and reporting the health of the Pods(containers) to the API Server in a heart-beat like fashion
-- kubelet runs a service/daemon in all master and all worker nodes
-- kubeadm is an adminstrative tool again used in master as well worker nodes
+- every node will have a Container Agent ( kubelet ) running as a background service/daemon
+- The Container Agent i.e kubelet is the one which interacts with Container Runtime
+- kubelet is responsible in downloading Container images to local nodes, deploying Pods(containers) on to the node, monitoring the health of the Pod(containers) and reporting the health of the Pods(containers) to the API Server in a heart-beat like fashion
+- kubelet runs as a service/daemon in all master and all worker nodes
+- kubeadm is an adminstrative tool used in master as well worker nodes
 - kubeadm helps in bootstrapping master node
 - kubeadm also helps in joining worker nodes to the cluster
 - kubeadm also helps in unjoining worker nodes from the cluster
@@ -214,74 +223,3 @@ oc get pods
 oc get pod
 oc get po
 ```
-
-# Day 2 - OpenShift
-
-## What are the chain of things that happen with Kubernetes/OpenShift when we deploy an application?
-```
-oc new-project jegan
-oc create deploy nginx --image=bitnami/nginx:latest
-```
-
-List the deployments, replicasets and pods as shown below
-```
-oc get deploy,rs,po
-```
-
-## Listing the existing projects in OpenShift
-```
-oc get projects
-```
-
-## Finding the currently active project
-```
-oc project
-```
-The expected output is
-<pre>
-(root@tektutor.org)# oc project
-Using project "jegan" on server "https://api.ocp.tektutor.org:6443".
-</pre>
-
-
-## Switching to a different project
-```
-oc project <any-other-existing-project-name>
-```
-
-## Scaling up your nginx deployment
-
-List the number of nginx pods running
-```
-oc get po
-```
-
-Now you scale up the Pods to count 3
-```
-oc scale deploy/nginx --replicas=3
-```
-
-List the number of nginx pods running now
-
-You are expected to see 3 replicas of nginx Pods after scale up
-
-You may watch the pods status
-```
-oc get po -o wide -w
-```
-To come out of watch mode, you may hit Ctrl + c
-
-
-## Kubernetes
-- supports 3 types of services
-  1. ClusterIP Service ( Internal service - ie works only with K8s cluster )
-  2. NodePort Service ( External service -ie accessible even outside the K8s cluster )
-  3. LoadBalancer Service ( External Service - used typically in cloud env like AWS/Azure, etc )
-      - an external Load Balancer will be created which performan load balance to different Pods
-      - on Prem if you need this, you need install MetalLB/Traeffic Load Balancer
-
-## OpenShift
-- built on top of Kubernetes with many additional features
-- whatever works in Kubernetes also works in OpenShift
-- supports a new feature called route that provides a friendly url for your services that can be accessed outside the cluster
-- 
