@@ -21,6 +21,23 @@ oc create deploy nginx --image=bitnami/nginx:latest
 13. kubelet container agents running on the respective nodes receives the broadcast event and if the node detail matches theirs, downloads the container images and creates the Pods with those container images, monitors the Pod health periodically and updates the API Server like a heart-beat update
 14. API Server updates the Pod status as Running in the etcd based on the updates from the respective kubelet container agent notification.
 
+## Kubernetes
+- supports 3 types of services
+  1. ClusterIP Service ( Internal service - ie works only with K8s cluster )
+  2. NodePort Service ( External service -ie accessible even outside the K8s cluster )
+  3. LoadBalancer Service ( External Service - used typically in cloud env like AWS/Azure, etc )
+      - an external Load Balancer will be created which performan load balance to different Pods
+      - on Prem if you need this, you need install MetalLB/Traeffic Load Balancer
+
+## OpenShift
+- built on top of Kubernetes with many additional features
+- whatever works in Kubernetes also works in OpenShift
+- supports a new feature called route that provides a friendly url for your services that can be accessed outside the cluster
+- supports CI/CD within OpenShift which isn't supported by Kubernetes
+- supports Private Container Registry out of the box unlike Kubernetes
+- supports User Management out of the box unlike Kubernetes
+
+
 ## Listing the existing projects in OpenShift
 ```
 oc get projects
@@ -65,15 +82,48 @@ oc get po -o wide -w
 To come out of watch mode, you may hit Ctrl + c
 
 
-## Kubernetes
-- supports 3 types of services
-  1. ClusterIP Service ( Internal service - ie works only with K8s cluster )
-  2. NodePort Service ( External service -ie accessible even outside the K8s cluster )
-  3. LoadBalancer Service ( External Service - used typically in cloud env like AWS/Azure, etc )
-      - an external Load Balancer will be created which performan load balance to different Pods
-      - on Prem if you need this, you need install MetalLB/Traeffic Load Balancer
+## Scaling down deployment
+```
+oc scale deploy nginx --replicas=1
+```
 
-## OpenShift
-- built on top of Kubernetes with many additional features
-- whatever works in Kubernetes also works in OpenShift
-- supports a new feature called route that provides a friendly url for your services that can be accessed outside the cluster
+## Creating a ClusterIP Internal service
+```
+oc expose deploy/nginx --type=ClusterIP --port=8080
+```
+
+## Find more details about service
+```
+oc describe svc/nginx
+```
+
+## Accessing ClusterIP Internal Service
+```
+curl Cluster-IP:Cluster-Port
+```
+Alternatively, within any Pod that runs in the same cluster, Pods can access the service by its name
+```
+curl clusterip-service-name:clusterip-service-port
+```
+
+## Creating NodePort External Service
+```
+oc delete svc/nginx
+oc expose deploy/nginx --type=NodePort --port=8080
+```
+
+## Accessing NodePort External Service
+```
+curl <master1-node-ip>:<node-port>
+curl <master2-node-ip>:<node-port>
+curl <master3-node-ip>:<node-port>
+curl <worker1-node-ip>:<node-port>
+curl <worker2-node-ip>:<node-port>
+```
+
+NodePort will be in the range 30000 to 32767.  The port assigned for a nodeport service will be opened for that service on all nodes in the cluster.
+
+Alternatively, within any Pod that runs in the same cluster, Pods can access the service by its name
+```
+curl nodeport-service-name:nodeport-service-port
+```
