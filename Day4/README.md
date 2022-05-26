@@ -15,6 +15,7 @@ oc apply -f https://github.com/tektutor/sample-openshift-app/blob/main/hello-dep
 ```
 oc explain deployment
 ```
+
 The expected output is
 <pre>
 (jegan@tektutor.org)$ oc explain deployment
@@ -55,6 +56,7 @@ Delete any existing deployment in the name hello if exists
 oc delete deploy/hello
 ```
 
+Let's create the hello deployment as shown below
 ```
 cd ~
 git clone https://github.com/tektutor/tekton-may-2022.git
