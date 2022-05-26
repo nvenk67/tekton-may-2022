@@ -216,6 +216,13 @@ and configures the Load Balancer to perform the routing to the corresponding ser
 - Services that are accessed within the cluster doesn't need to be exposed a route
 - route only forwards the call to a single service
 
+## How OpenShift/Kubernetes create a Pod and let all the containers in Pod share the IP address
+- every Pod has a secret infra pod created out of k8s.gcr.io/pause:latest container image
+- the purpose of the pause container is to supply the network stack to all other containers in the same pod
+- as the pause container sleeps forever, it is possible to start, restart other containers in the same Pod without
+  terminating the Pod
+- containers in the same Pod shares the IP address of the pause container
+
 ## Creating a project in OpenShift
 ```
 oc new-project jegan
