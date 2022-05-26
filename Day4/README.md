@@ -49,5 +49,35 @@ cd ~/tekton-may-2022
 git pull
 cd Day4/manifests
 
-oc apply -f hello-service.yml
+oc apply -f hello-clusterip-service.yml
+```
+
+## Creating a nodeport service for the hello deployment in declarative style
+Clean up any service in the name hello(if any)
+```
+oc delete svc/hello
+```
+
+Now let's create the nodeport external service for hello via manifest file
+```
+cd ~/tekton-may-2022
+git pull
+cd Day4/manifests
+
+oc apply -f hello-nodeport-service.yml
+```
+
+## Creating a loadbalancer service for the hello deployment in declarative style
+Clean up any service in the name hello(if any)
+```
+oc delete svc/hello
+```
+
+Now let's create the loadbalancer external service for hello via manifest file
+```
+cd ~/tekton-may-2022
+git pull
+cd Day4/manifests
+
+oc apply -f hello-loadbalancer-service.yml
 ```
