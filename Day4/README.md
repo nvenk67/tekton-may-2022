@@ -46,7 +46,7 @@ FIELDS:
 
    status	<Object>
      Most recently observed status of the Deployment.
-<pre>
+</pre>
 
 ## Creating application deployments in declarative style
 
