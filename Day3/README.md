@@ -77,7 +77,7 @@ Your system is correctly setup for using CodeReady Containers, you can now run '
 </pre>
 
 ##### ℹ️ Starting your local CRC OpenShift Cluster
-:x:  Please don't attempt this in our training lab.
+:x:  Please don't attempt this in our training lab.these
 
 ```
 ./crc start
@@ -215,3 +215,47 @@ and configures the Load Balancer to perform the routing to the corresponding ser
 - You may then create route to expose the clusterIP service that needs external access
 - Services that are accessed within the cluster doesn't need to be exposed a route
 - route only forwards the call to a single service
+
+## Creating a project in OpenShift
+```
+oc new-project jegan
+```
+Please replace 'jegan' with your short name.
+
+## Deploying application within your project
+```
+oc project
+oc create deploy nginx --image=bitnami/nginx:lates
+```
+
+## Scale the nginx deployment
+```
+oc scale deploy/nginx --replicas=3
+```
+
+## Create a clusterip service
+```
+oc expose deploy/nginx --port=8080 --type=clusterIP
+```
+
+List the services
+```
+oc get svc
+```
+
+Inspect the service
+```
+oc describe svc/nginx
+```
+
+## Create a route
+You can create routes for any type of OpenShift service irrespective of whether it is clusterip, nodeport or Loadbalancer service.
+
+```
+oc expose svc/nginx
+```
+
+List the route
+```
+oc get route
+```
