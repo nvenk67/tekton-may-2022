@@ -52,10 +52,25 @@ cd Day4/manifests
 oc apply -f hello-clusterip-service.yml
 ```
 
+You can open a shell or get inside a Pod 
+```
+oc exec -it hello-7484667c7d-4wl9w sh
+```
+
+From within the Pod shell, you can access the clusterip service as shown below
+```
+curl 172.30.223.164:8080
+curl hello:8080
+```
+
 ## Creating a nodeport service for the hello deployment in declarative style
 Clean up any service in the name hello(if any)
 ```
 oc delete svc/hello
+```
+Alternatively, you can delete the clusterip service in declarative style
+```
+oc delete -f hello-clusterip-service.yml
 ```
 
 Now let's create the nodeport external service for hello via manifest file
@@ -72,6 +87,12 @@ Clean up any service in the name hello(if any)
 ```
 oc delete svc/hello
 ```
+
+Alternatively, you can delete the nodeport service in declarative style
+```
+oc delete -f hello-nodeport-service.yml
+```
+
 
 Now let's create the loadbalancer external service for hello via manifest file
 ```
