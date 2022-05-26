@@ -122,6 +122,8 @@ Credentials
 - a group of master and worker nodes
 - you may have any number of master nodes
 - you may have any number of worker nodes
+- the nodes can only participate in a single Kubernetes/OpenShift cluster
+- the same nodes can't be part of multiple Kubernetes/OpenShift cluster
 - node could be a Physical server, or a virtual machine, or an ec2 instance from AWS or other cloud machine
 - Master Node
   - Control Plane Components
