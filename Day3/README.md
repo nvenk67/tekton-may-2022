@@ -1,12 +1,14 @@
 # Day 3
 
-## You may like these blogs
+## You may like to read these blogs
 <pre>
 https://developers.redhat.com/blog/2019/01/15/podman-managing-containers-pods#podman_pods__what_you_need_to_know
 
 https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/building_running_and_managing_containers/assembly_working-with-pods_building-running-and-managing-containers
 
 https://blog.neuvector.com/article/advanced-kubernetes-networking
+
+https://infohub.delltechnologies.com/l/design-guide-red-hat-openshift-container-platform-4-2/red-hat-openshift-container-platform-4-2-6
 </pre>
 
 ## Install Code Ready Containers on your System
@@ -75,7 +77,7 @@ Your system is correctly setup for using CodeReady Containers, you can now run '
 </pre>
 
 ##### ℹ️ Starting your local CRC OpenShift Cluster
-:x:  Please don't attempt this in our training lab.
+:x:  Please don't attempt this in our training lab.these
 
 ```
 ./crc start
@@ -208,8 +210,59 @@ and configures the Load Balancer to perform the routing to the corresponding ser
 5. Ingress Rule ( This is defined by Web Developer/DevOps Engineer )
 
 # What is a route?
-- OpenShift feature which isn't present Kubernetes
-- In OpenShift, every service is generally created as clusterip service
-- If service will be accessed externally, then a route will be created for the clusterIP service.
-- If the service is accessed only within the cluster, then no route is created
+- Route is a OpenShift feature that doesn't exist in Kubernetes
+- In OpenShift, every service can be created as clusterip service
+- You may then create route to expose the clusterIP service that needs external access
+- Services that are accessed within the cluster doesn't need to be exposed a route
 - route only forwards the call to a single service
+
+## How OpenShift/Kubernetes create a Pod and let all the containers in Pod share the IP address
+- every Pod has a secret infra pod created out of k8s.gcr.io/pause:latest container image
+- the purpose of the pause container is to supply the network stack to all other containers in the same pod
+- as the pause container sleeps forever, it is possible to start, restart other containers in the same Pod without
+  terminating the Pod
+- containers in the same Pod shares the IP address of the pause container
+
+## Creating a project in OpenShift
+```
+oc new-project jegan
+```
+Please replace 'jegan' with your short name.
+
+## Deploying application within your project
+```
+oc project
+oc create deploy nginx --image=bitnami/nginx:lates
+```
+
+## Scale the nginx deployment
+```
+oc scale deploy/nginx --replicas=3
+```
+
+## Create a clusterip service
+```
+oc expose deploy/nginx --port=8080 --type=clusterIP
+```
+
+List the services
+```
+oc get svc
+```
+
+Inspect the service
+```
+oc describe svc/nginx
+```
+
+## Create a route
+You can create routes for any type of OpenShift service irrespective of whether it is clusterip, nodeport or Loadbalancer service.
+
+```
+oc expose svc/nginx
+```
+
+List the route
+```
+oc get route
+```
