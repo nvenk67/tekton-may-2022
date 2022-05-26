@@ -1,12 +1,14 @@
 # Day 3
 
-## You may like these blogs
+## You may like to read these blogs
 <pre>
 https://developers.redhat.com/blog/2019/01/15/podman-managing-containers-pods#podman_pods__what_you_need_to_know
 
 https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/building_running_and_managing_containers/assembly_working-with-pods_building-running-and-managing-containers
 
 https://blog.neuvector.com/article/advanced-kubernetes-networking
+
+https://infohub.delltechnologies.com/l/design-guide-red-hat-openshift-container-platform-4-2/red-hat-openshift-container-platform-4-2-6
 </pre>
 
 ## Install Code Ready Containers on your System
