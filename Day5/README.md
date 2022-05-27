@@ -442,7 +442,7 @@ Once you update the requirements.yml with the tool version installed on your sys
 
 ## Build your opetor image
 ```
-make docker-build IMG=tektutor/memcached-openshift-operator:1.0
+make docker-build IMG=tektutor/nginx-operator:1.0
 ```
 
 Expected ouptut is
