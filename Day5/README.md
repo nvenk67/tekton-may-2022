@@ -491,3 +491,22 @@ oc get deploy -n memcached-operator-system
 Expected output is
 <pre>
 </pre>
+
+
+# What is Kubernetes Operators?
+- is a way to extend a Kubernetes/OpenShift API
+- via operator you can add your own Custom Resources in Kubernetes/OpenShift cluster
+- to manage the Custom Resources we also need to provide Custom Controllers
+- in short Operator is collection of Custom Resources and Custom Controllers that  manage the Custom Resource
+- Operator also helps us bundle/package our Openshift applications as Operators
+  which can then later be deployed easily on other Openshift clusters
+
+## What is an Operator Hub?
+- a web portal that has many ready to deploy operators for various applications
+- RedHat market place has many tested and certified operators that you can use within 
+  OpenShift.  RedHat supports the certified operators.
+- Community market place has opensource ready to deploy operators but for which you may/may not get suport.
+- Operator Lifecycle Manage(OLM) is an also an Operator which comes pre-installed
+  with OpenShift that simplifies installation of other Operators
+- Operator Hub is also integrated with OpenShift web console by the Operator Life Cycle Manager (OLM)
+- OLM enables installation/uninstallation of operators via the exiting oc/kubectl cli tool
