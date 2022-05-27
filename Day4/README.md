@@ -83,6 +83,11 @@ oc apply -f hello-nodeport-service.yml
 ```
 
 ## Creating a loadbalancer service for the hello deployment in declarative style
+
+As we are using a bare-metal Openshift cluster, we need to first install MetalLB or equivalent load balancer
+within our OpenShift cluster.
+For our training purpose, let's use Metal LB. You may follow the instruction to deploy MetalLB here https://medium.com/tektutor/using-metallb-loadbalancer-with-bare-metal-openshift-onprem-4230944bfa35
+
 Clean up any service in the name hello(if any)
 ```
 oc delete svc/hello
