@@ -91,6 +91,9 @@ REPOSITORY                                           TAG                        
 </pre>
 
 ## Install podman
+
+You may check the official documentation here https://podman.io/getting-started/installation
+
 ```
 sudo yum install -y epel-release
 sudo yum -y install podman
