@@ -348,7 +348,7 @@ Further, you can also check the folder listing and cat the file PROJECT
 
 ## Creating an API
 ```
-operator-sdk create api --group cache --version v1 --kind Nginx --generate-role 
+operator-sdk create api --group training --version v1 --kind Nginx --generate-role 
 ```
 Expected output is
 <pre>
@@ -360,7 +360,7 @@ Currently the /roles/nginx/tasks/main.yml file will be empty
 <pre>
 (jegan@tektutor.org)$ <b>cat roles/nginx/tasks/main.yml</b>
 </pre>
-Edit the /roles/memcached/tasks/main.yml and add the below coe
+Edit the /roles/nginx/tasks/main.yml and add the below coe
 <pre>
 ---
 - name: start nginx
@@ -388,12 +388,12 @@ Edit the /roles/memcached/tasks/main.yml and add the below coe
                 - containerPort: 8080
 </pre>
 
-## Update the default variable size to 1
+## Update the default variable size to 3
 
 Append the below line in roles/nginx/defaults/main.yml
 
 ```
-size: 1
+size: 3
 ```
 
 Currently the file config/samples/cache_v1_nginx.yaml looks as below
@@ -460,7 +460,7 @@ You need to edit the /home/jegan/projects/nginx-operator/requirements.yml and up
 
 Once you update the requirements.yml with the tool version installed on your system, you can expect the build go thru.
 
-## Build your opetor image
+## Build your operator image
 ```
 make docker-build IMG=tektutor/nginx-operator:1.0
 ```
