@@ -4,3 +4,5 @@ metadata:
   name: mysql-config-env-file
 data:
   MYSQL_ROOT_PASSWORD: root
+  JDK_HOME: /usr/lib/jdk8
+  M2_HOME: /usr/share/maven
