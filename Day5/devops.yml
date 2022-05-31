@@ -1,0 +1,10 @@
+apiVersion: tektutor.org/v1
+kind: Training 
+metadata:
+  name: devops-training 
+spec:
+  training: "DevOps"
+  duration: "5 Days" 
+  city: "Bengaluru"
+  from: "4th June 2022"
+  to: "8th June 2022"

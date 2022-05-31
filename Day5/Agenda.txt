@@ -1,0 +1,7 @@
+Agenda:
+1. Installing OpenShift via CRC
+
+2. Deploying applications via pre-build image
+
+3. 
+
