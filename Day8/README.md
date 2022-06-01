@@ -105,3 +105,25 @@
 - Gitlab also plans to integrate with Tekton 
 
 - Jenkins-x uses Tekton CI/CD
+
+
+## Tekton CI/CD Pipeline
+
+- each pipeline is a combination of many tasks executed sequentially or parallely
+- Task is an independently executable unit in Tekton
+- Each Task will create a Pod
+- Tasks are further broken down into Steps
+- Steps can only executed as part a Task, hence we can't execute steps independently outside Tasks
+- Each Step creates a Container within the Task Pod
+- Steps uses Workspaces as directories to read and write files
+- Steps takes certain inputs from the workspace and then can pass on their output to other Steps by writing
+  their output to the Workspace directory
+- Worskpaces can be shared by one or more steps or by different Tasks
+- Each Task can be executed by creating a TaskRun
+- TaskRun provides necessary configuration and parameters values to the Task for execution
+- Each Pipeline can be executed by creating a PipelineRun
+- PipelineRun provides necessary configuration and parameter values(if any) to the Pipeline
+- TaskRun represents one execution of a Task
+- each time you execute a Task, a separate TaskRun will be created
+- each time you execute a Pipeline, a separate PipelineRun will be created
+- Taskrun or the PipelineRun stores the logs generated while executed the TaskRun/PipelineRun
