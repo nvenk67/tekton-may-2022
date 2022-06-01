@@ -8,17 +8,17 @@ spec:
       image: registry.access.redhat.com/ubi8/ubi-minimal 
       command: 
         - /bin/bash 
-        - c
+        - -c
         - echo "Step 1 Completed"
     - name: step2 
       image: registry.access.redhat.com/ubi8/ubi-minimal 
       command: 
         - /bin/bash 
-        - c
+        - -c
         - echo "Step 2 Completed"
     - name: step3 
       image: registry.access.redhat.com/ubi8/ubi-minimal 
       command: 
         - /bin/bash 
-        - c
+        - -c
         - echo "Step 3 Completed"
