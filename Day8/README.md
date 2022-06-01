@@ -127,3 +127,19 @@
 - each time you execute a Task, a separate TaskRun will be created
 - each time you execute a Pipeline, a separate PipelineRun will be created
 - Taskrun or the PipelineRun stores the logs generated while executed the TaskRun/PipelineRun
+
+## Creating your first Tekton Task
+```
+cd ~/tekton-may-2022
+git pull
+
+cd Day8/tekton
+oc apply -f task-1.yml 
+```
+
+Expected output is
+<pre>
+[jegan@localhost tekton]$ <b>oc apply -f task-1.yml</b>
+task.tekton.dev/hello-world-task created
+</pre>
+
