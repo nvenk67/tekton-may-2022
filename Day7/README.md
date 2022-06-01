@@ -62,5 +62,20 @@ For detailed instructions, you may read my medium blog here
 https://medium.com/tektutor/openshift-ci-cd-with-tekton-faa88ba45656
 </pre>
 
+You may find the below Tekton blogs useful
+<pre>
+https://cloud.redhat.com/blog/introducing-openshift-pipelines
+
+https://alesnosek.com/blog/2020/06/30/ci-slash-cd-pipeline-spanning-multiple-openshift-clusters/
+
+https://developer.ibm.com/tutorials/tekton-triggers-101/
+
+https://hevodata.com/learn/tekton-ci-cd/
+
+https://cloud.redhat.com/blog/deploying-to-openshift-using-github-actions
+
+https://codilime.com/blog/best-ci-cd-pipeline-tools-you-should-know/
+
+</pre>
 
 
