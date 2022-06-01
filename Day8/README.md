@@ -152,3 +152,32 @@ tkn tasks list
 tkn task list
 tkn t list
 ```
+
+## Creating a TaskRun to execute the task we created just now
+```
+cd ~/tekton-may-2022
+git pull
+
+cd Day8/tekton
+oc apply -f helloworld-taskrun.yml 
+```
+
+Expected output
+<pre>
+[jegan@localhost tekton]$ <b>oc apply -f helloworld-taskrun.yml</b>
+taskrun.tekton.dev/helloworld-taskrun created
+</pre>
+
+## Checking the output logs of taskrun
+```
+tkn tr list
+tkn logs helloworld-taskrun
+```
+Expected output is
+<pre>
+[jegan@localhost tekton]$ <b>tkn tr list</b>
+NAME                 STARTED          DURATION     STATUS
+helloworld-taskrun   15 seconds ago   11 seconds   Succeeded
+[jegan@localhost tekton]$ <b>tkn tr logs helloworld-taskrun</b>
+[hello-world] Hello TekTon !
+</pre>
