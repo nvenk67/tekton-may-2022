@@ -1,6 +1,36 @@
 # OpenShift CI/CD with Tekton
 
-## What are the alternative Tekton CI/CD options available ?
+## Tekton Overview
+- Tekton is a Kubernetes native CI/CD Framework that also works pretty smoothly in OpenShift
+- Tekton pipeline works in onPrem, public and private cloud as it is a native applications
+  that run within OpenShift
+- Tekton CI/CD framework is a open source project backed by RedHat
+- OpenShift being a RedHat's product, RedHat also provides support for Tekton native CI/CD Pipeline to its customers
+- Tekton adds many Custom Resources to OpenShift via Custom Resource Definitions (CRDs)
+- To name a few Tekton Custom Resources
+    - Tasks
+    - TaskRuns
+    - ClusterTasks
+    - ClusterInterceptors
+    - Conditions
+    - PipelineResources
+    - Repositories
+    - Runs
+    - TektonAddons
+    - TektonConfigs
+    - TektonHubs
+    - Pipelines
+    - PipelineRuns
+    - Workspaces
+    - TektonTriggers
+    - TektonBindings
+    - TektonTemplates
+
+- Tekton also adds Custom Controllers to manage the above Custom Resources
+- Tekton can be installed easily in OpenShift from the Operator Hub by installed "Red Hat OpenShift Tekton Operator"
+- Tekton allows to create pipelines via webconsole GUI or via declarative yaml script
+
+## What are the Tekton CI/CD alternative options available ?
 - Jenkins
 - Jenkins-x
 - GitHub Actions
@@ -16,6 +46,8 @@
 - Tekton pipelines can be created using YAML, hence learning additional programming language is not necessary
 - Jenkins uses Plugins for everything, in case of plugin conflicts customer can't expect any support
 - Tekton is backed by RedHat, hence RedHat wordwide support is guaranteed
+- Tekton is servless
+- Jenkins CI/CD should be running 24x7 to detect code changes and to run pipeline
 
 ## Advantage of Tekton over Travis CI
 - Travis CI can't be hosted on-prem
@@ -73,3 +105,109 @@
 - Gitlab also plans to integrate with Tekton 
 
 - Jenkins-x uses Tekton CI/CD
+
+
+## Tekton CI/CD Pipeline
+
+- each pipeline is a combination of many tasks executed sequentially or parallely
+- Task is an independently executable unit in Tekton
+- Each Task will create a Pod
+- Tasks are further broken down into Steps
+- Steps can only executed as part a Task, hence we can't execute steps independently outside Tasks
+- Each Step creates a Container within the Task Pod
+- Steps uses Workspaces as directories to read and write files
+- Steps takes certain inputs from the workspace and then can pass on their output to other Steps by writing
+  their output to the Workspace directory
+- Worskpaces can be shared by one or more steps or by different Tasks
+- Each Task can be executed by creating a TaskRun
+- TaskRun provides necessary configuration and parameters values to the Task for execution
+- Each Pipeline can be executed by creating a PipelineRun
+- PipelineRun provides necessary configuration and parameter values(if any) to the Pipeline
+- TaskRun represents one execution of a Task
+- each time you execute a Task, a separate TaskRun will be created
+- each time you execute a Pipeline, a separate PipelineRun will be created
+- Taskrun or the PipelineRun stores the logs generated while executed the TaskRun/PipelineRun
+
+## RedHat Container Registry URL
+<pre>
+https://catalog.redhat.com/software/containers/search
+</pre>
+
+## Creating your first Tekton Task
+```
+cd ~/tekton-may-2022
+git pull
+
+cd Day8/tekton
+oc apply -f task-1.yml 
+```
+
+Expected output is
+<pre>
+[jegan@localhost tekton]$ <b>oc apply -f task-1.yml</b>
+task.tekton.dev/hello-world-task created
+</pre>
+
+## Listing the Tekton tasks
+```
+oc get tasks
+oc get task
+
+tkn tasks list
+tkn task list
+tkn t list
+```
+
+## Creating a TaskRun to execute the task we created just now
+```
+cd ~/tekton-may-2022
+git pull
+
+cd Day8/tekton
+oc apply -f helloworld-taskrun.yml 
+```
+
+Expected output
+<pre>
+[jegan@localhost tekton]$ <b>oc apply -f helloworld-taskrun.yml</b>
+taskrun.tekton.dev/helloworld-taskrun created
+</pre>
+
+## Checking the output logs of taskrun
+```
+tkn tr list
+tkn logs helloworld-taskrun
+```
+Expected output is
+<pre>
+[jegan@localhost tekton]$ <b>tkn tr list</b>
+NAME                 STARTED          DURATION     STATUS
+helloworld-taskrun   15 seconds ago   11 seconds   Succeeded
+[jegan@localhost tekton]$ <b>tkn tr logs helloworld-taskrun</b>
+[hello-world] Hello TekTon !
+</pre>
+
+## Passing parameters to Tekton Task
+```
+cd ~/tekton-may-2022
+git pull
+
+cd Day8/tekton
+oc apply -f task-3-with-params.yml 
+```
+
+You may then create a TaskRun in OpenShift webconsole with the below code
+<pre>
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: task-with-params-taskrun
+spec:
+  taskRef:
+     name: task-with-params
+</pre>
+
+You may later check the logs in the OpenShift logs or optionally from the CLI
+```
+oc tr logs task-with-params-taskrun
+```
