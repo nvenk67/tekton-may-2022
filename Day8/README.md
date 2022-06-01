@@ -1,6 +1,36 @@
 # OpenShift CI/CD with Tekton
 
-## What are the alternative Tekton CI/CD options available ?
+## Tekton Overview
+- Tekton is a Kubernetes native CI/CD Framework that also works pretty smoothly in OpenShift
+- Tekton pipeline works in onPrem, public and private cloud as it is a native applications
+  that run within OpenShift
+- Tekton CI/CD framework is a open source project backed by RedHat
+- OpenShift being a RedHat's product, RedHat also provides support for Tekton native CI/CD Pipeline to its customers
+- Tekton adds many Custom Resources to OpenShift via Custom Resource Definitions (CRDs)
+- To name a few Tekton Custom Resources
+    - Tasks
+    - TaskRuns
+    - ClusterTasks
+    - ClusterInterceptors
+    - Conditions
+    - PipelineResources
+    - Repositories
+    - Runs
+    - TektonAddons
+    - TektonConfigs
+    - TektonHubs
+    - Pipelines
+    - PipelineRuns
+    - Workspaces
+    - TektonTriggers
+    - TektonBindings
+    - TektonTemplates
+
+- Tekton also adds Custom Controllers to manage the above Custom Resources
+- Tekton can be installed easily in OpenShift from the Operator Hub by installed "Red Hat OpenShift Tekton Operator"
+- Tekton allows to create pipelines via webconsole GUI or via declarative yaml script
+
+## What are the Tekton CI/CD alternative options available ?
 - Jenkins
 - Jenkins-x
 - GitHub Actions
