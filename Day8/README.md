@@ -129,7 +129,7 @@
 - Taskrun or the PipelineRun stores the logs generated while executed the TaskRun/PipelineRun
 
 ## RedHat Container Registry URL
-<pre>[
+<pre>
 https://catalog.redhat.com/software/containers/search
 </pre>
 
