@@ -8,7 +8,5 @@ spec:
      image: registry.access.redhat.com/ubi8/ubi-minimal
      script: |
        #!/usr/bin/env bash
-       echo "Installing iputils"
-       dnf install iputils -y
-       ping redhat.com -c 3
+       echo "Executing script from task step ..."
        echo "It worked!"

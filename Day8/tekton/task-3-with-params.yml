@@ -12,6 +12,6 @@ spec:
       image: registry.access.redhat.com/ubi8/ubi-minimal
       command: 
         - /bin/bash
-        - c
+        - -c
         - echo "Hello TekTon - Param $(params.who)"
 
