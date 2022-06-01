@@ -143,3 +143,12 @@ Expected output is
 task.tekton.dev/hello-world-task created
 </pre>
 
+## Listing the Tekton tasks
+```
+oc get tasks
+oc get task
+
+tkn tasks list
+tkn task list
+tkn t list
+```
