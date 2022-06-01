@@ -128,6 +128,11 @@
 - each time you execute a Pipeline, a separate PipelineRun will be created
 - Taskrun or the PipelineRun stores the logs generated while executed the TaskRun/PipelineRun
 
+## RedHat Container Registry URL
+<pre>[
+https://catalog.redhat.com/software/containers/search
+</pre>
+
 ## Creating your first Tekton Task
 ```
 cd ~/tekton-may-2022
