@@ -186,3 +186,28 @@ helloworld-taskrun   15 seconds ago   11 seconds   Succeeded
 [jegan@localhost tekton]$ <b>tkn tr logs helloworld-taskrun</b>
 [hello-world] Hello TekTon !
 </pre>
+
+## Passing parameters to Tekton Task
+```
+cd ~/tekton-may-2022
+git pull
+
+cd Day8/tekton
+oc apply -f task-3-with-params.yml 
+```
+
+You may then create a TaskRun in OpenShift webconsole with the below code
+<pre>
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: task-with-params-taskrun
+spec:
+  taskRef:
+     name: task-with-params
+</pre>
+
+You may later check the logs in the OpenShift logs or optionally from the CLI
+```
+oc tr logs task-with-params-taskrun
+```
