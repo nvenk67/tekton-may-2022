@@ -1,0 +1,17 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: task-with-params
+spec:
+  params:
+    - name: who
+      type: string
+      default: World
+  steps:
+    - name: step-with-params
+      image: registry.access.redhat.com/ubi8/ubi-minimal
+      command: 
+        - /bin/bash
+        - c
+        - echo "Hello TekTon - Param $(params.who)"
+

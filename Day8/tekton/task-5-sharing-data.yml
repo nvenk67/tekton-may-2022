@@ -1,0 +1,23 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: steps-sharing-data
+spec:
+  results:
+    - name: data
+      description: Data to be shared
+  steps:
+    - name: step1
+      image: registry.access.redhat.com/ubi/ubi-minimal
+      command:
+        - /bin/bash
+      args:
+        - "-c"
+        - echo "Plain data converted to Base 64" | base64 > $(results.data.path)
+    - name: step2
+      image: registry.access.redhat.com/ubi/ubi-minimal
+      command:
+        - /bin/bash
+      args:
+        - "-c"
+        - cat $(results.data.path)

@@ -1,0 +1,28 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: git-clone-task
+spec:
+  params:
+    - name: git-repo-url
+      type: string
+      default: https://github.com/tektutor/spring-ms.git
+  workspaces:
+    - name: source
+  steps:
+   - name: git-clone
+     image: alpine/git
+     workingDir: $(workspaces.source.path)
+     command:
+       - /bin/sh
+     args:
+       - "-c"
+       - "git clone -v $(params.git-repo-url) ./source
+
+   - name: git-repo-list
+     image: alpine
+     workingDir: $(workspaces.source.path)
+     command:
+       - /bin/sh
+     args:
+       - ls -la ./source
