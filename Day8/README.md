@@ -46,6 +46,8 @@
 - Tekton pipelines can be created using YAML, hence learning additional programming language is not necessary
 - Jenkins uses Plugins for everything, in case of plugin conflicts customer can't expect any support
 - Tekton is backed by RedHat, hence RedHat wordwide support is guaranteed
+- Tekton is servless
+- Jenkins CI/CD should be running 24x7 to detect code changes and to run pipeline
 
 ## Advantage of Tekton over Travis CI
 - Travis CI can't be hosted on-prem
