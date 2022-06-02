@@ -1,0 +1,72 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: git-source-dir 
+  labels:
+     name: jegan
+spec:
+  capacity:
+    storage: 100Mi 
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    path: /mnt/git-source
+    server: 192.168.1.80
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: git-source-dir 
+spec:
+  selector:
+    matchLabels:
+      name: jegan
+  accessModes:
+    - ReadWriteMany
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: 100Mi 
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: git-clone-task
+spec:
+  params:
+    - name: git-repo-url
+      type: string
+      default: https://github.com/tektutor/spring-ms.git
+  workspaces:
+    - name: source
+  steps:
+   - name: git-clone
+     image: alpine/git
+     workingDir: $(workspaces.source.path)
+     command:
+       - /bin/sh
+     args:
+       - "-c"
+       - "git clone -v $(params.git-repo-url) ./source"
+
+   - name: git-repo-list
+     image: alpine
+     workingDir: $(workspaces.source.path)
+     command:
+       - /bin/sh
+     args:
+       - -c
+       - ls -ltra ./source
+---
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: git-clone-taskrun
+spec:
+  taskRef:
+     name: git-clone-task 
+  workspaces:
+  - name: source
+    persistentVolumeClaim:
+      claimName: git-source-dir 
