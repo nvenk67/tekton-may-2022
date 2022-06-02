@@ -8,14 +8,14 @@ spec:
       description: Data to be shared
   steps:
     - name: step1
-      image: registry.access.redhat.com/ubi/ubi-minimal
+      image: registry.access.redhat.com/ubi8/ubi-minimal
       command:
         - /bin/bash
       args:
         - "-c"
         - echo "Plain data converted to Base 64" | base64 > $(results.data.path)
     - name: step2
-      image: registry.access.redhat.com/ubi/ubi-minimal
+      image: registry.access.redhat.com/ubi8/ubi-minimal
       command:
         - /bin/bash
       args:
