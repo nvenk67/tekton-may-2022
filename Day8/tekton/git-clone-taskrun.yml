@@ -1,0 +1,10 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: git-clone-taskrun
+spec:
+  taskRef:
+     name: git-clone-task 
+  workspaces:
+  - name: source
+    emptyDir: { }

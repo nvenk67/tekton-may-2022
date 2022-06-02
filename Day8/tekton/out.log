@@ -1,0 +1,4 @@
+[0G[2K[1;92m? [0m[1;99mValue for param `git-repo-url` of type `string`? (Default is `https://github.com/tektutor/spring-ms.git`) [0m[37m(https://github.com/tektutor/spring-ms.git) [0m[?25l[?25h[0G[2K[1;92m? [0m[1;99mValue for param `git-repo-url` of type `string`? (Default is `https://github.com/tektutor/spring-ms.git`) [0m[36mhttps://github.com/tektutor/spring-ms.git[0m
+Please give specifications for the workspace: source 
+[0G[2K[1;92m? [0m[1;99mName for the workspace : [0m[?25l[?25h[0G[2K[1;92m? [0m[1;99mName for the workspace : [0m[36m[0m
+[0G[2K[1;92m? [0m[1;99mValue of the Sub Path : [0m[37m( ) [0m[?25l[?25h

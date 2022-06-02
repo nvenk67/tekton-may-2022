@@ -17,7 +17,7 @@ spec:
        - /bin/sh
      args:
        - "-c"
-       - "git clone -v $(params.git-repo-url) ./source
+       - "git clone -v $(params.git-repo-url)"
 
    - name: git-repo-list
      image: alpine
@@ -25,4 +25,13 @@ spec:
      command:
        - /bin/sh
      args:
-       - ls -la ./source
+       - -c
+       - ls -ltRa .
+
+   - name: print-sub-path 
+     image: alpine
+     command:
+       - /bin/sh
+     args:
+       - -c
+       - echo "$(workspaces.source.path)" 
