@@ -1,4 +1,19 @@
-##Encoding the values to be stored in secrets 
+## Task with multiple steps
+- Tekton creates a separate Pod for each Task
+- Tekton creates a container for each step in a Task
+- When a Tekton Task has let's say 3 steps, then Tekton will create 3 containers within the pod
+- The step containers are executed in sequence from top to bottom
+- If a previous step fails, the subsequent steps will be skipped
+- related steps can be put together in a single Task
+- One Task should do only major functionality
+- For example, cloning source code can be done as a single task
+- Compiling the source code can be done as a separate Task
+
+## Pipeline with Multiple Tasks
+- Tekton creates separate Pods for each Task in a Pipeline
+- Tasks in a Pipeline can be executed either in sequence or in parallel as per our instructions in the pipeline
+
+## Encoding the values to be stored in secrets 
 It is important to use -n switch in echo command, otherwise echo will add a newline character by default.
 Hence the newline character also will get encoded. The -n switch ensure no newline character is appended by echo.
 ```
