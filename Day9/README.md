@@ -41,6 +41,11 @@ data:
 ```
 
 ## Lab Exercise - Creating a task that fetches login credentials from secrets mounted as a Volume
+
+#### Points to note/remember when using Secrets as a Volume
+- it has a size limit of max 1MB
+- the volume mounted from Secrets will be read only
+
 ```
 cd ~/tekton-may-2022
 git pull
@@ -101,6 +106,11 @@ Expected output
 </pre>
 
 ## Lab Exercise - Task that retrieves values from ConfigMap mounted as a Volume
+
+#### Points to note/remember when using ConfigMap as a Volume
+- it has a size limit of max 1MB
+- the volume mounted from a ConfigMap will be read only
+
 ```
 cd ~/tekton-may-2022
 git pull
