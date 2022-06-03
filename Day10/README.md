@@ -7,7 +7,7 @@ The tekton-polling-operator comes in handy for a bare-metal OpenShift setup.  Th
 oc apply -f https://github.com/bigkevmcd/tekton-polling-operator/releases/download/v0.4.0/release-v0.4.0.yaml
 ```
 
-Expected output 
+Expected output is
 <pre>
 (jegan@tektutor.org)$ <b>oc apply -f https://github.com/bigkevmcd/tekton-polling-operator/releases/download/v0.4.0/release-v0.4.0.yaml</b>
 deployment.apps/tekton-polling-operator created
@@ -39,7 +39,7 @@ cd Day10
 
 oc apply -f java-tekton-cicd-pipeline.yml
 ```
-Expected output
+Expected output is
 <pre>
 (jegan@tektutor.org)$ <b>oc apply -f java-tekton-cicd-pipeline.yml</b>
 persistentvolume/tektutor-tekton-pv unchanged
@@ -59,7 +59,7 @@ cd Day10
 oc apply -f git-trigger.yml
 ```
 
-Expected output
+Expected output is
 <pre>
 (jegan@tektutor.org)$ <b>oc apply -f git-trigger.yml</b>
 repository.polling.tekton.dev/tektutor-git-repo created
