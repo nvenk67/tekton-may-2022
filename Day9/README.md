@@ -1,13 +1,13 @@
 ## Task with multiple steps
 - Tekton creates a separate Pod for each Task
 - Tekton creates a container for each step in a Task
-- When a Tekton Task has let's say 3 steps, then Tekton will create 3 containers within the pod
+- Let's say a Tekton Task has 3 steps, then Tekton will create 3 containers within the Task pod
 - The step containers are executed in sequence from top to bottom
-- If a previous step fails, the subsequent steps will be skipped
-- related steps can be put together in a single Task
+- When a previous step fails, the subsequent steps will be skipped
+- Related steps can be put together in a single Task
 - One Task should do only major functionality
 - For example, cloning source code can be done as a single task
-- Compiling the source code can be done as a separate Task
+- Compiling the source code should be done as a separate Task
 
 ## Pipeline with Multiple Tasks
 - Tekton creates separate Pods for each Task in a Pipeline
