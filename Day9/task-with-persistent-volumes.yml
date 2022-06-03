@@ -39,25 +39,25 @@ spec:
       type: string
       default: https://github.com/tektutor/spring-ms.git
   workspaces:
-    - name: source
+    - name: git-source 
   steps:
    - name: git-clone
      image: alpine/git
-     workingDir: $(workspaces.source.path)
+     workingDir: $(workspaces.git-source.path)
      command:
        - /bin/sh
      args:
        - "-c"
-       - "git clone -v $(params.git-repo-url) ./source"
+       - "git clone -v $(params.git-repo-url)"
 
    - name: git-repo-list
      image: alpine
-     workingDir: $(workspaces.source.path)
+     workingDir: $(workspaces.git-source.path)
      command:
        - /bin/sh
      args:
        - -c
-       - ls -ltra ./source
+       - ls -ltR .
 ---
 apiVersion: tekton.dev/v1beta1
 kind: TaskRun
@@ -67,6 +67,6 @@ spec:
   taskRef:
      name: git-clone-task 
   workspaces:
-  - name: source
+  - name: git-source
     persistentVolumeClaim:
       claimName: git-source-dir 

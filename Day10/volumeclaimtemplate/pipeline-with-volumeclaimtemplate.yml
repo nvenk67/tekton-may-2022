@@ -1,0 +1,33 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: pipeline-with-volumetemplate 
+spec:
+  workspaces:
+    - name: my-nfs-workspace
+  tasks:
+    - name: task-that-uses-volume-template
+      taskSpec:
+        steps:
+          - name: step1 
+            image: ubuntu
+            script: echo "Persistent Volume Template works !" > $(workspaces.task-ws.path)/status
+        workspaces:
+          - name: my-nfs-workspace 
+---
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: pipeline-with-volumetemplate-run-
+spec:
+  pipelineRef:
+    name: pipeline-with-volumetemplate 
+  workspaces:
+    - name: my-nfs-workspace 
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteMany
+          resources:
+            requests:
+              storage: 1Mi
